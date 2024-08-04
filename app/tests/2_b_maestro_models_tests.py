@@ -1,6 +1,6 @@
 import pytest
 from django.core.exceptions import ValidationError
-from django.db.utils import IntegrityError
+
 
 @pytest.mark.django_db
 def test_institucion_model():
@@ -50,6 +50,7 @@ def test_institucion_model():
     institucion.factor = "Valor string, no float"
     with pytest.raises(ValidationError):
         institucion.full_clean()
+
 
 @pytest.mark.django_db
 def test_medicamento_model():
@@ -165,10 +166,8 @@ def test_medicamento_model():
 @pytest.mark.django_db
 def test_item_model():
     from maestro.models import Item
-    item = Item.objects.create(
-        nombre= "Monitor de Signos Vitales",
-        tipo= Item.Tipo.SOPORTE_VITAL
-    )
+
+    item = Item.objects.create(nombre="Monitor de Signos Vitales", tipo=Item.Tipo.SOPORTE_VITAL)
     assert item.nombre == "Monitor de Signos Vitales"
     assert item.tipo == Item.Tipo.SOPORTE_VITAL
     assert str(item) == "Monitor de Signos Vitales (soporte_vital)"
@@ -182,17 +181,14 @@ def test_item_model():
     item.tipo = "Invalid Tipo"
     with pytest.raises(ValidationError):
         item.full_clean()
-    
+
 
 @pytest.mark.django_db
 def test_equipamiento_model():
     from maestro.models import Equipamiento, Item
+
     item = Item.objects.all().first()
-    equipamiento = Equipamiento.objects.create(
-        item=item,
-        marca="Respirador Mecánico",
-        modelo="Modelo"
-    )
+    equipamiento = Equipamiento.objects.create(item=item, marca="Respirador Mecánico", modelo="Modelo")
     assert equipamiento.item == item
     assert equipamiento.marca == "Respirador Mecánico"
     assert equipamiento.modelo == "Modelo"
@@ -213,22 +209,18 @@ def test_equipamiento_model():
     equipamiento.item.delete()
     assert Equipamiento.objects.filter(id=equipamiento.id).first() is None, "Eliminar item debería eliminar Equipamiento"
 
+
 @pytest.mark.django_db
 def test_quiebre_model():
     from maestro.models import Quiebre, Institucion, Medicamento
+
     institucion = Institucion.objects.all().first()
     medicamento = Medicamento.objects.all().first()
-    quiebre = Quiebre.objects.create(
-        institucion = institucion,
-        medicamento = medicamento
-    )
+    quiebre = Quiebre.objects.create(institucion=institucion, medicamento=medicamento)
     assert quiebre.institucion == institucion
     assert quiebre.medicamento == medicamento
     assert quiebre.cantidad == 500, "Cantidad por defecto, debe ser 500"
 
-    _, created = Quiebre.objects.get_or_create(
-            institucion = quiebre.institucion,
-            medicamento = quiebre.medicamento
-    )
+    _, created = Quiebre.objects.get_or_create(institucion=quiebre.institucion, medicamento=quiebre.medicamento)
 
     assert not created, "LLaves foraneas 'institucion' y 'medicamento' son 'unique_together"
