@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 
-from .models import Institucion, Medicamento, Item, Equipamiento,Quiebre
+from .models import Institucion, Medicamento, Item, Equipamiento, Quiebre
 
 
 class InstitucionSerializer(serializers.ModelSerializer):
@@ -41,30 +41,19 @@ class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = [
-            "nombre",
-            "tipo"
-        ]
+        fields = ["nombre", "tipo"]
 
 
 class EquipamientoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Equipamiento
-        fields = [
-            "item",
-            "marca",
-            "modelo"
-        ]
+        fields = ["item", "marca", "modelo"]
 
 
 class QuiebreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Quiebre
-        fields = [
-            "medicamento",
-            "institucion",
-            "cantidad"
-        ]
+        fields = ["medicamento", "institucion", "cantidad"]
 
     def get_unique_together_validators(self):
         """Se sobreescribe el metodo, para eliminar la validacion de 'unique_together'"""
