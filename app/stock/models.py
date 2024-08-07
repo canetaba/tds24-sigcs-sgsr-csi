@@ -12,15 +12,12 @@ class Lote(models.Model):
     def __str__(self) -> str:
         return self.codigo
 
-    pass
-
 
 class Consumo(models.Model):
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE)
     medicamento = models.ForeignKey(Medicamento, on_delete=models.CASCADE)
     fecha = models.DateField(default=date.today)
     cantidad = models.PositiveIntegerField()
-    pass
 
 
 class Stock(models.Model):
@@ -33,11 +30,8 @@ class Stock(models.Model):
     class Meta:
         unique_together = [("institucion", "medicamento")]
 
-    pass
-
 
 class Movimiento(models.Model):
     institucion = models.ForeignKey(Institucion, on_delete=models.CASCADE)
     fecha = models.DateField(default=date.today)
     lote = models.OneToOneField(Lote, unique=True, on_delete=models.CASCADE)
-    pass
