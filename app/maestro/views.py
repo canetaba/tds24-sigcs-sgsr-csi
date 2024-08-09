@@ -1,9 +1,11 @@
 from rest_framework import generics
 
-from maestro.models import Institucion, Medicamento, Item
-from maestro.serializers import InstitucionSerializer, MedicamentoSerializer,ItemSerializer
+from maestro.models import Institucion, Medicamento, Item, Quiebre, Equipamiento
+from maestro.serializers import (InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer,
+                                 EquipamientoSerializer)
 
 
+# 1 objeto
 class InstitucionesRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Institucion.objects.all()
     serializer_class = InstitucionSerializer
@@ -20,3 +22,46 @@ class ItemsRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
     http_method_names = ["delete", "get"]
+
+
+class QuiebreRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Quiebre.objects.all()
+    serializer_class = QuiebreSerializer
+    http_method_names = ["delete", "get"]
+
+
+class EquipamientoRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Equipamiento.objects.all()
+    serializer_class = EquipamientoSerializer
+    http_method_names = ["delete", "get"]
+
+
+# Lista
+class InstitucionesListCreateView(generics.ListCreateAPIView):
+    queryset = Institucion.objects.all()
+    serializer_class = InstitucionSerializer
+    http_method_names = ["post", "get"]
+
+
+class ItemsListCreateView(generics.ListCreateAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    http_method_names = ["post", "get"]
+
+
+class MedicamentosListCreateView(generics.ListCreateAPIView):
+    queryset = Medicamento.objects.all()
+    serializer_class = MedicamentoSerializer
+    http_method_names = ["post", "get"]
+
+
+class QuiebreListCreateView(generics.ListCreateAPIView):
+    queryset = Quiebre.objects.all()
+    serializer_class = QuiebreSerializer
+    http_method_names = ["post", "get"]
+
+
+class EquipamientoListCreateView(generics.ListCreateAPIView):
+    queryset = Equipamiento.objects.all()
+    serializer_class = EquipamientoSerializer
+    http_method_names = ["post", "get"]

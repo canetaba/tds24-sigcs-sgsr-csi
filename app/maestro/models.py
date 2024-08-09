@@ -91,6 +91,8 @@ class Item(models.Model):
 
 
 class Equipamiento(models.Model):
+    objects = None
+
     class Tipo(models.TextChoices):
         SOPORTE_VITAL = "soporte_vital", "Soporte Vital"
         APOYO_MONITORIZACION = "apoyo_monitorizacion", "Apoyo y Monitorización"
