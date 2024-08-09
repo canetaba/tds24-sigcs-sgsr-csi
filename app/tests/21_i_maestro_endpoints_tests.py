@@ -102,7 +102,7 @@ def test_get_equipamiento_list(client):
 
 @pytest.mark.django_db
 def test_get_equipamiento(client):
-    response = client.get("/maestro/equipamiento/3", content_type="application/json")
+    response = client.get("/maestro/equipamiento/4", content_type="application/json")
     assert response.status_code == 200
     #TODO: validar campo obtenido
 
