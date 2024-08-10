@@ -29,6 +29,5 @@ urlpatterns = [
     path("disponibilidad-medicamento/<int:medicamento>", DisponibilidadMedicamentoAPIView.as_view(), name="disponibilidad-medicamento-d"),
     path("quiebre-stock", QuiebreStockAPIView.as_view(), name="quiebre-stock"),
     path("alerta-caducidad-lote", AlertaCaducidadLoteAPIView.as_view(), name="alerta-caducidad-lote"),
-
-    path("graphs/movimientos-medicamento", MovimientoMedicamentoListView.as_view(), name="movimiento-medicamento-g")
+    path("graph/movimientos-medicamentos-graph",  MovimientoMedicamentoListView.as_view(), name='movimientos_medicamentos_graph-v'),
 ]
