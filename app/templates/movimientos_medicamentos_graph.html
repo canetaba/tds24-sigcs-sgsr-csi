@@ -45,7 +45,7 @@
       <!-- Histórico de Movimientos por Medicamento -->
       <div class="chart-container">
           <h2>Histórico de Movimientos por Medicamento</h2>
-          <canvas id="historicoMovimientos"></canvas>
+          <canvas id="historico_movimientos"></canvas>
       </div>
   
       <!-- Caducidad de Medicamentos -->
@@ -75,7 +75,7 @@
   
   <script>
       // Configuración del gráfico Histórico de Movimientos por Medicamento
-      const ctx1 = document.getElementById('historicoMovimientos').getContext('2d');
+      const ctx1 = document.getElementById('historico_movimientos').getContext('2d');
       new Chart(ctx1, {
           type: 'line',
           data: {

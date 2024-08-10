@@ -186,6 +186,7 @@ class MovimientoMedicamentoListView(ListView):
     template_name = 'movimientos_medicamentos_graph.html'
     context_object_name = 'historico_movimientos'
 
+
     def get_queryset(self):
         queryset = Movimiento.objects.all()
-        return MovimientoSerializer(queryset, many=True).data
+        return MovimientoReadSerializer(queryset, many=True).data
