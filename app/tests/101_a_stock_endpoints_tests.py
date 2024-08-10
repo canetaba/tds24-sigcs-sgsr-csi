@@ -66,7 +66,6 @@ def test_disponibilidad_medicamento_id(client):
 @pytest.mark.django_db
 def test_quiebre_stock(client):
     response = client.get("/stock/quiebre-stock", content_type="application/json")
-    print(response.data)
     assert response.status_code == 200, "endpoint no encontrado"
     assert len(response.data) == 1, "se obtuvieron más resultados de los esperados"
 
