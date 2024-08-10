@@ -1,7 +1,9 @@
 from rest_framework import generics
 
 from .models import Institucion, Medicamento, Item, Quiebre, Equipamiento
-from .serializers import InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer, EquipamientoSerializer
+from .serializers import InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer, \
+    EquipamientoSerializer
+
 
 class InstitucionesRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Institucion.objects.all()
@@ -44,15 +46,18 @@ class ItemsListCreateView(generics.ListCreateAPIView):
     serializer_class = ItemSerializer
     http_method_names = ["post", "get"]
 
+
 class MedicamentosListCreateView(generics.ListCreateAPIView):
     queryset = Medicamento.objects.all()
     serializer_class = MedicamentoSerializer
     http_method_names = ["post", "get"]
 
+
 class QuiebreListCreateView(generics.ListCreateAPIView):
     queryset = Quiebre.objects.all()
     serializer_class = QuiebreSerializer
     http_method_names = ["post", "get"]
+
 
 class EquipamientoListCreateView(generics.ListCreateAPIView):
     queryset = Equipamiento.objects.all()

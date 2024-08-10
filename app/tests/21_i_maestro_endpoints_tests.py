@@ -198,18 +198,29 @@ def test_get_equipamiento_list(client):
     response = client.get("/maestro/equipamientos", content_type="application/json")
     assert response.status_code == 200
     assert len(response.data) == 20
-    # TODO: validar algunos campos
+    assert response.data[4]['marca'] == "ZOLL"
+    assert response.data[4]['modelo'] == "AED Plus"
+    assert response.data[4]['item'] == 3
+
+    assert response.data[10]['marca'] == "GE Healthcare"
+    assert response.data[10]['modelo'] == "MAC 5500 HD"
+    assert response.data[10]['item'] == 7
+
+    assert response.data[17]['marca'] == "Smiths Medical"
+    assert response.data[17]['modelo'] == "Medfusion® 4000 Syringe Pump"
+    assert response.data[17]['item'] == 10
 
 
 @pytest.mark.django_db
 def test_get_equipamiento(client):
     response = client.get("/maestro/equipamientos/4", content_type="application/json")
     assert response.status_code == 200
-    #TODO: validar campo obtenido
+    assert response.data['marca'] == "Medtronic"
+    assert response.data['modelo'] == "Puritan Bennet 840"
+    assert response.data['item'] == 1
 
 
 @pytest.mark.django_db
 def test_get_equipamiento_empty(client):
     response = client.get("/maestro/equipamientos/1", content_type="application/json")
     assert response.status_code == 404
-    #TODO: validar campo obtenido

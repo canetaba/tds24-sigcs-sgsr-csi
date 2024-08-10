@@ -91,7 +91,6 @@ class Item(models.Model):
 
 
 class Equipamiento(models.Model):
-    #objects = None
 
     class Tipo(models.TextChoices):
         SOPORTE_VITAL = "soporte_vital", "Soporte Vital"
