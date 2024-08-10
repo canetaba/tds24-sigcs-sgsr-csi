@@ -1,8 +1,7 @@
 from rest_framework import generics
 
 from .models import Institucion, Medicamento, Item, Quiebre, Equipamiento
-from .serializers import InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer, \
-    EquipamientoSerializer
+from .serializers import InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer, EquipamientoSerializer
 
 
 class InstitucionesRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
