@@ -28,22 +28,23 @@ class Consumo(models.Model):
             s.upd_cantidad()
             s.upd_has_quiebre()
 
+
 class Stock(models.Model):
 
     def upd_cantidad(self):
-            self.cantidad = 0
-            for m in Movimiento.objects.filter(institucion=self.institucion, lote__medicamento=self.medicamento):
-                if m.lote.fecha_vencimiento > date.today():
-                    self.cantidad = self.cantidad + m.lote.cantidad
-                
-            for c in Consumo.objects.filter(institucion=self.institucion, medicamento=self.medicamento):
-                self.cantidad = self.cantidad - c.cantidad
-            self.save()
+        self.cantidad = 0
+        for m in Movimiento.objects.filter(institucion=self.institucion, lote__medicamento=self.medicamento):
+            if m.lote.fecha_vencimiento > date.today():
+                self.cantidad = self.cantidad + m.lote.cantidad
+
+        for c in Consumo.objects.filter(institucion=self.institucion, medicamento=self.medicamento):
+            self.cantidad = self.cantidad - c.cantidad
+        self.save()
 
     def upd_has_quiebre(self):
-        q = Quiebre.objects.filter(institucion = self.institucion, medicamento = self.medicamento).first()
-        if (q):
-            if (q.cantidad >= self.cantidad):
+        q = Quiebre.objects.filter(institucion=self.institucion, medicamento=self.medicamento).first()
+        if q:
+            if q.cantidad >= self.cantidad:
                 self.has_quiebre = True
             else:
                 self.has_quiebre = False
@@ -71,6 +72,7 @@ class Movimiento(models.Model):
             s.upd_cantidad()
             s.upd_has_quiebre()
         return
+
 
 # Cuando un recurso de movimiento o consumo se crea correctamente, se actualiza el stock (y el campo 'has_quiebre')
 @receiver(post_save, sender=Movimiento)

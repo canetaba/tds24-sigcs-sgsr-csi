@@ -63,6 +63,7 @@ def test_workflow_calculo_quiebre_stock():
         not stock.has_quiebre
     ), "cada movimiento debe actualizar el quiebre de stock (stock.cantidad == quiebre.cantidad => stock.has_quiebre=True)"
 
+
 @pytest.mark.django_db
 def test_workflow_calculo_caducidad():
     from maestro.models import Institucion, Medicamento
