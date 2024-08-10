@@ -215,6 +215,7 @@ def test_get_equipamiento_list(client):
 def test_get_equipamiento(client):
     response = client.get("/maestro/equipamientos/4", content_type="application/json")
     assert response.status_code == 200
+    assert len(response.data) == 3
     assert response.data['marca'] == "Medtronic"
     assert response.data['modelo'] == "Puritan Bennet 840"
     assert response.data['item'] == 1
