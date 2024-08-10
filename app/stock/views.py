@@ -3,6 +3,10 @@ from rest_framework.response import Response
 from .models import Movimiento, Consumo, Stock, Quiebre, Lote
 from .serializers import MovimientoSerializer, ConsumoSerializer, MovimientoReadSerializer, StockSerializer, LoteSerializer
 from datetime import datetime, date
+from django.views.generic.base import View
+from django.shortcuts import render
+from rest_framework.request import Request
+
 
 
 class MovimientoListCreateView(generics.ListCreateAPIView):
@@ -171,3 +175,14 @@ class AlertaCaducidadLoteAPIView(generics.ListAPIView):
     queryset = Lote.objects.filter(fecha_vencimiento__lt=date.today())
     serializer_class = LoteSerializer
     http_method_names = ["get"]
+
+class MovimientoMedicamentoListView(View):
+    def get(self, request, *args, **kwargs):
+        # Crear una instancia de MovimientoMedicamentoView
+        api_view = MovimientoMedicamentoView()
+        queryset = api_view.get_queryset(None)
+        print(queryset)
+
+
+        # Renderizar la plantilla con los datos obtenidos
+        return render(request, "movimientos_medicamentos_template.html")
