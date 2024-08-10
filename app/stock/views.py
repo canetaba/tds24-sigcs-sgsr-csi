@@ -1,16 +1,9 @@
-from django.core.serializers import json
-from django.core.serializers.json import DjangoJSONEncoder
-from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView
 from rest_framework import generics, status
 from rest_framework.response import Response
 from .models import Movimiento, Consumo, Stock, Quiebre, Lote
 from .serializers import MovimientoSerializer, ConsumoSerializer, MovimientoReadSerializer, StockSerializer, LoteSerializer
 from datetime import datetime, date
-from django.views.generic.base import View
-from django.shortcuts import render
-import json
-
 
 
 class MovimientoListCreateView(generics.ListCreateAPIView):
@@ -183,9 +176,8 @@ class AlertaCaducidadLoteAPIView(generics.ListAPIView):
 
 class MovimientoMedicamentoListView(ListView):
     model = Movimiento
-    template_name = 'movimientos_medicamentos_graph.html'
-    context_object_name = 'historico_movimientos'
-
+    template_name = "movimientos_medicamentos_graph.html"
+    context_object_name = "historico_movimientos"
 
     def get_queryset(self):
         queryset = Movimiento.objects.all()

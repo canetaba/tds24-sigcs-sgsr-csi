@@ -37,4 +37,3 @@ class MovimientoReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movimiento
         fields = ["id", "institucion", "lote", "fecha"]
-
