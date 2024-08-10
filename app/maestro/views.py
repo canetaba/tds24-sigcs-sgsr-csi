@@ -1,11 +1,8 @@
 from rest_framework import generics
 
-from maestro.models import Institucion, Medicamento, Item, Quiebre, Equipamiento
-from maestro.serializers import (InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer,
-                                 EquipamientoSerializer)
+from .models import Institucion, Medicamento, Item, Quiebre, Equipamiento
+from .serializers import InstitucionSerializer, MedicamentoSerializer, ItemSerializer, QuiebreSerializer, EquipamientoSerializer
 
-
-# 1 objeto
 class InstitucionesRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     queryset = Institucion.objects.all()
     serializer_class = InstitucionSerializer
@@ -36,7 +33,6 @@ class EquipamientoRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     http_method_names = ["delete", "get"]
 
 
-# Lista
 class InstitucionesListCreateView(generics.ListCreateAPIView):
     queryset = Institucion.objects.all()
     serializer_class = InstitucionSerializer
@@ -48,18 +44,15 @@ class ItemsListCreateView(generics.ListCreateAPIView):
     serializer_class = ItemSerializer
     http_method_names = ["post", "get"]
 
-
 class MedicamentosListCreateView(generics.ListCreateAPIView):
     queryset = Medicamento.objects.all()
     serializer_class = MedicamentoSerializer
     http_method_names = ["post", "get"]
 
-
 class QuiebreListCreateView(generics.ListCreateAPIView):
     queryset = Quiebre.objects.all()
     serializer_class = QuiebreSerializer
     http_method_names = ["post", "get"]
-
 
 class EquipamientoListCreateView(generics.ListCreateAPIView):
     queryset = Equipamiento.objects.all()
